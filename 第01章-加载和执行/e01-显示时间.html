@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Script Example/title>
+</head>
+<body>
+    <p>
+        <script type="text/javascript">
+        document.write("The date is " + (new Date().toString()));
+        </script>
+    </p>
+</body>
+</html>
+<!-- 
+    当浏览器遇到<script>标签时就会停止处理页面，先执行JavaScript代码，然后再继续解析和渲染页面。
+    同样的情况也会发生在使用src属性加载JavaScript的过程中，浏览器会下载外链文件中的代码，然后解析并执行。
+    在这个过程中，页面渲染和用户交互完全是被阻塞的。
+-->
