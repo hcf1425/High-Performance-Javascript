@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>e11-推荐的无阻塞模式</title>
+</head>
+<body>
+    <p>Hello World!</p>
+
+
+    <script type="text/javascript" src="loader.js"></script>
+    <script type="text/javascript">
+        loadScript("the-rest.js",function(){
+            Application.init();
+        });
+    </script>
+</body>
+</html>
+
+<!-- 
+    把这段代码放到body标签闭合之前有的好处：
+    1.这样确保了JavaScript执行过程中不会阻塞页面其他内容的显示。
+    2.当第二个JavaScript文件下载完成时，应用所需的所有DOM结构以及构建完成，并做好了交互的准备，从而避免了需要另一件
+    事（比如window.onload）来检测是否准备好。
+ -->
+
