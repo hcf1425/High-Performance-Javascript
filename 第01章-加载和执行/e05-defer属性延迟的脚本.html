@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>e05-defer属性延迟的脚本</title>
+</head>
+<body>
+    <script defer>
+        alert("defer")
+    </script>
+    <script>
+        alert("script")
+    </script>
+    <script>
+        window.onload = function(){
+            alert("load")
+        } 
+    </script>
+</body>
+</html>
+<!-- 
+    这段代码在页面处理过程中弹出3次提示框
+    不支持defer属性的浏览器弹出的顺序是："defer","script","load"  
+    支持defer的浏览器弹出的顺序是: "script","defer","load"
+    ps: 测试了一下，我的chrome,safari当前版本都不支持。
+ -->
