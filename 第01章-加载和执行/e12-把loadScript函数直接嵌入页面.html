@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>推荐的无阻塞模式之将loadScript函数直接嵌入页面</title>
+</head>
+<body>
+    <p>hello world!</p>
+    <script type="text/javascript">
+    function loadScript(url, callback){
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+
+        if(script.readyState){ // IE
+            script.onreadystatechange = function(){
+                if (script.readyState == "loaded" || script.readyState == "complete"){
+                    script.onreadystatechange = null;
+                    callback();
+                }
+            }
+        }else{ // 其他浏览器
+            script.onload = function(){
+                callback();
+            }
+        }
+        script.src = url;
+        document.getElementsByTagName("head")[0].appendChild(script);
+    }
+    loadScript("the-rest.js", function(){
+        Application.init();
+    })
+    </script>
+</body>
+</html>
+<!-- 
+    如果采用这一种做法，建议使用YUI Compressor 把初始化代码压缩到最小尺寸。
+    一旦页面初始化所需的代码完成下载，你可以继续自由地使用loadScript（）去加载页面其他的功能所需脚本。
+ -->
